@@ -26,6 +26,13 @@ import pdf2image
 import pytesseract
 from PIL import Image
 
+# Initialize session state variables at the very top
+if "selected_model" not in st.session_state:
+    st.session_state.selected_model = "Gemini"  # or your default value
+
+if 'vector_store' not in st.session_state:
+    st.session_state.vector_store = None
+
 # Try to find tesseract in common locations
 tesseract_paths = [
     '/opt/homebrew/bin/tesseract',  # Homebrew on Apple Silicon
@@ -69,10 +76,7 @@ genai.configure(api_key=gemini_api_key)
 # Session state initialization
 if 'chat_history' not in st.session_state:
     st.session_state.chat_history = []
-if 'vector_store' not in st.session_state:
-    st.session_state.vector_store = None
-if "selected_model" not in st.session_state:
-    st.session_state.selected_model = "Gemini"  # or your default value
+
 
 def process_with_pytesseract(pdf_path):
     """Process PDF content using pytesseract OCR."""
