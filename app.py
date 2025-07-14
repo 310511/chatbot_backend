@@ -71,8 +71,8 @@ if 'chat_history' not in st.session_state:
     st.session_state.chat_history = []
 if 'vector_store' not in st.session_state:
     st.session_state.vector_store = None
-if 'selected_model' not in st.session_state:
-    st.session_state.selected_model = "Gemini"
+if "selected_model" not in st.session_state:
+    st.session_state.selected_model = "Gemini"  # or your default value
 
 def process_with_pytesseract(pdf_path):
     """Process PDF content using pytesseract OCR."""
